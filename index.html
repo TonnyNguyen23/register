@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="main">
+        <form action="" class="form" id="form-1">
+            <!-- heading and exit -->
+            <div class="form__header">
+                <h3>Đăng ký tài khoản</h3>
+                <span class="form__exit"><i class="fas fa-times"></i></span>
+            </div>
+
+            <!-- With gg and fb -->
+            <div class="form__difference">
+                <div class="google">
+                    <i class="fab fa-google"></i>
+                </div>
+                
+                <div class="facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+            </div>
+
+            <!-- line -->
+            <div class="form__line">
+                <p>Hoặc</p>
+            </div>
+
+            <!-- auth -->
+            
+                <div class="form-group">
+                    <input type="text" name="" id="fname" placeholder="Tên đầy đủ">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark">Nam</span>
+                    
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark">Nữ</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" placeholder="Email">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Nhập mật khẩu">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="repeat-password" placeholder="Nhập lại mật khẩu">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <button id="form-submit">TẠO TÀI KHOẢN</button>
+                </div>
+            
+            <div class="condition">
+                <p>Bạn đã có tài khoản? <a href="">Đăng nhập</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="./main.js"></script>
+
+    <script>
+        // Mong muốn
+        Validator({
+            form: "#form-1",
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fname', 'Vui lòng nhập tên đầy đủ của bạn'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.minLength('#password', 6),
+                Validator.isRequired('#repeat-password'),
+                Validator.isConfirmed('#repeat-password', function() {
+                    return document.querySelector('#form-1 #password').value;
+                }, 'Mật khẩu nhập lại không chính xác')
+            ],
+            onSubmit: function(data) {
+                console.log(data)
+            }
+        })
+    </script>
+</body>
+</html>
